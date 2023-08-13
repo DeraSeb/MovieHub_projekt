@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    <header class="header-bar">
+        <div class="logo">MovieHub</div>
+        <div class="links">
+            <a href="http://127.0.0.1:8000/login/" class="header-link">Login</a>
+            <a href="http://127.0.0.1:8000/register/" class="header-link">Register</a>
+        </div>
+    </header>
+    <div class="container">
+        <ol class="list">
+            <h1>Movies Ranking</h1>
+            {% for item in sorted_ranking %}
+                <li class="review-item">
+                    <div class="review-row"><strong>{{ forloop.counter }}. {{ item.movie }}</strong> (Average
+                        Rating: {{ item.avg_rating }})
+                    </div>
+                </li>
+            {% endfor %}
+        </ol>
+        <ul class="list">
+            {% for movie in latest_movies %}
+                <img src="{{ movie.poster_url }}" alt="{{ movie.title }} Poster" class="poster">
+                <br>
+                <a href="{% url 'cinema-view' movie_id=movie.id %}" class="button">See more</a>
+                <br>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

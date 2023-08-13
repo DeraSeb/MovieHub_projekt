@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="header-bar">
+        <div class="logo">MovieHub</div>
+        <div class="links">
+            <a class="header-link" href="/main">Main page</a>
+            <a class="header-link" href=/logout">Logout</a>
+        </div>
+    </div>
+    <ul class="list">
+    {% for cinema in cinemas %}
+    	<li class="review-item">
+        <a href="{% url 'movie-view' movie.id cinema.id %}" class="links">{{ cinema.name }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

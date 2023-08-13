@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="header-bar">
+        <div class="logo">MovieHub</div>
+        <div class="links">
+            <a class="header-link" href="http://127.0.0.1:8000/main/">Main Page</a>
+            <a class="header-link" href="http://127.0.0.1:8000/logout">Logout</a>
+        </div>
+    </div>
+    <div class="container">
+        <ul class="list">
+            <h1>Your Reviews</h1>
+            {% for review in reviews %}
+                <li class="review-item">
+                    <p class="review-row">movie title: {{ review.movie }}</p>
+                    <p class="review-row">rating: {{ review.rating }}</p>
+                    <p class="review-row">{{ review.comment }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        <ul class="list">
+            <h1>Account information</h1>
+            <li class="account-item">
+                <div>Username- {{ user.username }}</div>
+                <div>First name- {{ user.first_name }}</div>
+                <div class="review-row">Last name- {{ user.last_name }}</div>
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        <ol class="list">
+            <h1>Movies Ranking</h1>
+            {% for item in sorted_ranking %}
+                <li class="review-item">
+                    <div class="review-row"><strong>{{ forloop.counter }}. {{ item.movie }}</strong>
+                        <br>
+                        Rating: {{ item.avg_rating }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ol>
+
+        <ul class="list">
+            <h1>Your Watchlist</h1>
+            {% for movie in watchlist.movies.all %}
+                <li class="review-item">{{ movie.title }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

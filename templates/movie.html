@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="header-bar">
+        <div class="logo">MovieHub</div>
+        <div class="links">
+            <a class="header-link" href="http://127.0.0.1:8000/main/">Main page</a>
+        </div>
+    </div>
+    <div class="container">
+        <ul class="list">
+            <h1>{{ cinema.name }} - {{ movie.title }}</h1>
+            <h2>Screenings</h2>
+            {% for screening in screenings %}
+                <li class="review-item">{{ screening.screening_date|date:"d.m" }}
+                    at {{ screening.screening_time|time:"H:i" }}</li>
+            {% endfor %}
+            <a href="{% url 'cinema-view' movie.id %}" class="button">go back to cinemas</a>
+        </ul>
+        <div class="poster-div">
+            <img src="{{ movie.poster_url }}" class="poster">
+            <ul class="list">
+                <li class="review-item">
+                    Title: {{ movie.title }}
+                    <br>
+                    Director: {{ movie.movie_director }}
+                    <br>
+                    Starring: {{ movie.main_actor }}
+                    <br>
+                    premiere: {{ movie.release_date }}
+                </li>
+            </ul>
+            <form method="post" action="{% url 'add_to_watchlist' movie.id cinema.id %}">
+                {% csrf_token %}
+                <button type="submit" class="button">Add to Watchlist</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

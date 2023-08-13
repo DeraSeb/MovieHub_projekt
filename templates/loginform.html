@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <body>
+    <div class="header-bar">
+        <div class="logo">MovieHub</div>
+        <div class="links">
+            <a class="header-link" href="http://127.0.0.1:8000/">Home</a>
+        </div>
+    </div>
+    <form action="" method="post" class="form">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+    <div style="text-align: center;">
+        <a>You don't have an account? </a>
+        <br>
+        <a href="http://127.0.0.1:8000/register/" class="button">Click here to register</a>
+    </div>
+    <div class="message-container">
+        {{ message }}
+    </div>
+    </body>
+{% endblock %}
